@@ -1,0 +1,30 @@
+@import 'utils/colors';
+@import 'utils/typography';
+@import 'vendors/include-media';
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  font-size: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  line-height: 1;
+}

@@ -1,0 +1,15 @@
+@mixin defineColorRGB($color, $hex) {
+  $red: red($hex);
+  $green: green($hex);
+  $blue: blue($hex);
+  #{$color}: unquote('rgb(#{$red}, #{$green}, #{$blue})');
+  #{$color}-r: #{$red};
+  #{$color}-g: unquote('#{$green}');
+  #{$color}-b: unquote('#{$blue}');
+}
+
+@mixin pseudo($content: '') {
+  content: $content;
+  display: block;
+  position: absolute;
+}
