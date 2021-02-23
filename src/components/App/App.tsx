@@ -13,6 +13,7 @@ interface IPerson {
 
 const App: React.FC = () => {
   const [persons, setPersons] = useState<Array<IPerson>>([])
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
   useEffect(() => {
     // eslint-disable-next-line
@@ -27,13 +28,29 @@ const App: React.FC = () => {
     })()
   }, [])
 
+  const sortBy = (label: keyof IPerson) => {
+    const tmp = persons.slice()
+
+    tmp.sort((a, b) => {
+      if (a[label] < b[label]) {
+        return sortOrder === 'asc' ? -1 : 1
+      }
+      if (a[label] > b[label]) {
+        return sortOrder === 'asc' ? 1 : -1
+      }
+      return 0
+    })
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+    setPersons(tmp)
+  }
+
   return (
     <div className="container">
       <div className="table">
         <div className="table-head">
           <div className="table-head__cell">
             <p>Name</p>
-            <button type="button">
+            <button type="button" onClick={sortBy.bind(null, 'name')}>
               <svg>
                 <use xlinkHref={`${icons}#sort`} />
               </svg>
@@ -41,7 +58,7 @@ const App: React.FC = () => {
           </div>
           <div className="table-head__cell">
             <p>Age</p>
-            <button type="button">
+            <button type="button" onClick={sortBy.bind(null, 'age')}>
               <svg>
                 <use xlinkHref={`${icons}#sort`} />
               </svg>
@@ -49,7 +66,7 @@ const App: React.FC = () => {
           </div>
           <div className="table-head__cell">
             <p>Balance</p>
-            <button type="button">
+            <button type="button" onClick={sortBy.bind(null, 'balance')}>
               <svg>
                 <use xlinkHref={`${icons}#sort`} />
               </svg>
@@ -65,7 +82,7 @@ const App: React.FC = () => {
               <p>{p.age}</p>
             </div>
             <div className="table-row__cell">
-              <p>{p.balance}</p>
+              <p>${p.balance}</p>
             </div>
           </div>
         ))}
