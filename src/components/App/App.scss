@@ -1,0 +1,75 @@
+@import 'utils/functions';
+@import 'utils/placeholders';
+
+.container {
+  margin: 0 auto;
+  max-width: rem(1170);
+  padding-top: rem(75);
+}
+
+.table {
+  background-color: var(--color-light);
+  border-radius: rem(10);
+  box-shadow: rem(0) rem(0) rem(8) rem(0) rgba(43, 55, 74, 0.25);
+  margin-bottom: rem(75);
+
+  &-head {
+    border-bottom: rem(3) solid rgba(165, 176, 192, 0.30);
+    grid-template-rows: rem(90);
+    @extend %table-row;
+
+    &__cell {
+      align-items: center;
+      display: flex;
+      padding: 0 rem(34);
+
+      p {
+        color: var(--color-secondary);
+        margin-right: rem(18);
+        font: {
+          size: rem(18);
+          weight: 500;
+        }
+      }
+
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        height: rem(20);
+        outline: none;
+        padding: 0;
+        width: rem(15);
+      }
+
+      svg {
+        fill: var(--color-tetriary);
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  &-row {
+    grid-template-rows: rem(80);
+    @extend %table-row;
+
+    &:nth-of-type(even) {
+      background-color: var(--color-tetriary-alt);
+    }
+
+    &__cell {
+      align-items: center;
+      display: flex;
+      padding: 0 rem(28);
+
+      p {
+        color: var(--color-primary);
+        font: {
+          size: rem(18);
+          weight: 500;
+        };
+      }
+    }
+  }
+}

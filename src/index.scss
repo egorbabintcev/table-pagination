@@ -15,7 +15,15 @@
 }
 
 html {
-  font-size: 100%;
+  font: {
+    family: 'TT Norms', serif;
+    size: 100%;
+  }
+}
+
+body {
+  background-color: var(--color-tetriary-alt);
+  margin: 0;
 }
 
 h1,
