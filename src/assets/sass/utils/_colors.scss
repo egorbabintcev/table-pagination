@@ -1,4 +1,9 @@
 @import 'assets/sass/utils/mixins';
 
 :root {
+  @include defineColorRGB(--color-primary, #3D495C);
+  @include defineColorRGB(--color-secondary, #6C7C93);
+  @include defineColorRGB(--color-tetriary, #C4CAD4);
+  @include defineColorRGB(--color-tetriary-alt, #EEF1F6);
+  @include defineColorRGB(--color-light, #FFFFFF);
 }
