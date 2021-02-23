@@ -46,8 +46,10 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "json-server": "^0.16.3",
     "mini-css-extract-plugin": "0.11.3",
     "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",
@@ -77,9 +79,11 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "run-p compile server",
+    "compile": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "server": "json-server --watch --port 3001 db.json",
     "new:component": "hygen new component"
   },
   "eslintConfig": {
