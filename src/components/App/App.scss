@@ -2,9 +2,12 @@
 @import 'utils/placeholders';
 
 .container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   max-width: rem(1170);
-  padding-top: rem(75);
+  padding: rem(75) 0;
 }
 
 .table {
@@ -12,6 +15,7 @@
   border-radius: rem(10);
   box-shadow: rem(0) rem(0) rem(8) rem(0) rgba(43, 55, 74, 0.25);
   margin-bottom: rem(75);
+  width: 100%;
 
   &-head {
     border-bottom: rem(3) solid rgba(165, 176, 192, 0.30);
@@ -71,5 +75,44 @@
         };
       }
     }
+  }
+}
+
+.button-group {
+
+  button {
+    background-color: var(--color-light);
+    border: rem(1) solid var(--color-tetriary);
+    color: var(--color-primary);
+    height: rem(50);
+    margin: 0;
+    outline: none;
+    padding: 0 rem(20);
+    transition: 0.2s;
+    font: {
+      family: 'TT Norms', sans-serif;
+      size: rem(20);
+      weight: 500;
+    }
+  }
+
+  .prev {
+    border-radius: rem(4) 0 0 rem(4);
+    border-right: rem(1) solid var(--color-tetriary-alt);
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
+  }
+
+  .next {
+    background-color: var(--color-primary);
+    border: {
+      color: var(--color-primary);
+      left: none;
+      radius: 0 rem(4) rem(4) 0;
+    }
+    color: var(--color-light);
   }
 }

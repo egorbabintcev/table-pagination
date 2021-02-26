@@ -14,19 +14,7 @@ interface IPerson {
 const App: React.FC = () => {
   const [persons, setPersons] = useState<Array<IPerson>>([])
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
-
-  useEffect(() => {
-    // eslint-disable-next-line
-    ;(async () => {
-      try {
-        const response = await fetch('http://localhost:3001/persons')
-        const json = await response.json()
-        setPersons(json)
-      } catch (err) {
-        throw new Error(err)
-      }
-    })()
-  }, [])
+  const [personsPage, setPersonsPage] = useState(1)
 
   const sortBy = (label: keyof IPerson) => {
     const tmp = persons.slice()
@@ -43,6 +31,25 @@ const App: React.FC = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
     setPersons(tmp)
   }
+
+  const fetchPersons = (page: number, limit = 10) => {
+    // eslint-disable-next-line
+    ;(async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/persons?_limit=${limit}&_page=${page}`,
+        )
+        const json = await response.json()
+        setPersons(json)
+      } catch (err) {
+        throw new Error(err)
+      }
+    })()
+  }
+
+  useEffect(() => {
+    fetchPersons(personsPage)
+  }, [])
 
   return (
     <div className="container">
@@ -86,6 +93,31 @@ const App: React.FC = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="button-group">
+        <button
+          type="button"
+          className="prev"
+          onClick={() => {
+            if (personsPage > 1) {
+              fetchPersons(personsPage - 1)
+              setPersonsPage(personsPage - 1)
+            }
+          }}
+          disabled={personsPage <= 1}
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          className="next"
+          onClick={() => {
+            fetchPersons(personsPage + 1)
+            setPersonsPage(personsPage + 1)
+          }}
+        >
+          Next
+        </button>
       </div>
     </div>
   )
